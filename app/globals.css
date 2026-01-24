@@ -1,4 +1,83 @@
-@import "tailwindcss";
+/* ------------------------------
+   GOOGLE FONTS
+--------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/* ------------------------------
+   TAILWIND IMPORTS
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------
+   BASE STYLES
+--------------------------------*/
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #1f2937; /* gray-800 */
+}
+
+/* Headings = premium */
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Playfair Display", serif;
+}
+.font-serif {
+  font-family: "Playfair Display", serif;
+}
+
+/* Smooth rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================= PRINT MENU ================= */
+@media print {
+  header,
+  footer,
+  .print-hidden,
+  .whatsapp-float,
+  .call-float {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  .menu-print {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #000 !important;
+  }
+
+  button {
+    display: none !important;
+  }
+
+  li {
+    page-break-inside: avoid;
+  }
+}
+/* ================= NO SCROLLBAR ================= */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* @import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -23,4 +102,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
