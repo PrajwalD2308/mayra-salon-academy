@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Star,
   Users,

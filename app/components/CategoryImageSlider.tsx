@@ -33,6 +33,7 @@ export default function CategoryImageSlider({
                 alt="Category image"
                 fill
                 priority={index === 0}
+                unoptimized={true}
                 className="object-cover object-center transition-transform duration-700"
               />
             </div>

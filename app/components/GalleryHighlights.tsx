@@ -48,6 +48,7 @@ export default function GalleryHighlights() {
                     alt="Salon highlight"
                     width={300}
                     height={400}
+                    unoptimized
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -74,6 +75,7 @@ export default function GalleryHighlights() {
                   alt="Salon highlight"
                   width={600}
                   height={400}
+                  unoptimized
                   className="w-full h-[260px] object-cover"
                 />
               </div>
