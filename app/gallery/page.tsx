@@ -39,7 +39,7 @@ const images = [
   {
     id: 5,
     category: "salon",
-    src: "images/gallery/salon-5.jpeg", // ✅ fixed path
+    src: "/images/gallery/salon-5.jpeg", // ✅ fixed path
     title: "Premium Interior",
   },
   {

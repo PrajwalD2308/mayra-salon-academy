@@ -9,25 +9,25 @@ const popularServices = [
     id: "haircut-wash-setting",
     name: "Hair Styling",
     price: "₹400 onwards",
-    image: "images/services/hair-styling.png",
+    image: "/images/services/hair-styling.png",
   },
   {
     id: "hair-spa-male",
     name: "Hair Spa",
     price: "₹600 onwards",
-    image: "images/services/hair-spa.jpg",
+    image: "/images/services/hair-spa.jpg",
   },
   {
     id: "o3-facial",
     name: "Skin Treatment",
     price: "₹1,500 onwards",
-    image: "images/services/skin-treatment.png",
+    image: "/images/services/skin-treatment.png",
   },
   {
     id: "bridal-makeup",
     name: "Bridal Makeup",
     price: "₹15,000 onwards",
-    image: "images/services/bride-makeup.jpeg",
+    image: "/images/services/bride-makeup.jpeg",
   },
 ];
 
