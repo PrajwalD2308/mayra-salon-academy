@@ -35,19 +35,19 @@ export default function HeroSection() {
       title: "Best Unisex Salon in Amravati",
       subtitle: "Mayra Unisex Salon",
       description: "Professional Hair, Skin & Makeup Services Since 2016",
-      image: "/vercel.svg",
+      image: "/images/services/hero-1.png",
     },
     {
       title: "Bridal Makeup & Hair Styling Experts",
       subtitle: "Make Your Day Special",
       description: "Trusted by 790+ Happy Customers",
-      image: "/vercel.svg",
+      image: "/images/services/hero-2.png",
     },
     {
       title: "Professional Makeup Artist Training",
       subtitle: "Career + Income Oriented Courses",
       description: "Turn Your Passion Into a Profession",
-      image: "/vercel.svg",
+      image: "/images/services/hero-3.png",
     },
   ];
 
