@@ -28,7 +28,7 @@ export default function MenuQRPage() {
         {/* QR CODE */}
         <div className="flex justify-center mb-6">
           <QRCodeCanvas
-            value="https://mayraunisexsalon.com/menu"
+            value="https://www.mayrasalonandacademy.com/menu" // ✅ FIXED URL
             size={240} // 📱 mobile-friendly size
             bgColor="#ffffff"
             fgColor="#740f5f" // ✅ brand color
