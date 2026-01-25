@@ -3,15 +3,15 @@ import LayoutClient from "./LayoutClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mayrasalonacademy.com"),
+  metadataBase: new URL("https://www.mayrasalonandacademy.com"),
 
   title: {
     default:
-      "Mayra Unisex Salon & Makeup Academy | Services & Courses in Amravati",
+      "Best Unisex Salon & Makeup Academy in Amravati | Mayra Salon and Academy",
     template: "%s | Mayra Unisex Salon & Makeup Academy",
   },
   description:
-    "Mayra Unisex Salon & Makeup Academy in Amravati offers professional hair, skin, and makeup services along with certified makeup artist and beautician training courses.",
+    "Mayra Unisex Salon & Makeup Academy in Amravati offering bridal makeup, hair styling, skin treatments, and certified makeup artist courses. Book your appointment today.",
   keywords: [
     "Mayra Unisex Salon",
     "Makeup Academy in Amravati",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Mayra Unisex Salon & Makeup Academy | Services & Courses in Amravati",
     description:
       "Get premium salon & makeup services and learn professional makeup skills at Mayra Unisex Salon & Makeup Academy in Amravati.",
-    url: "https://mayrasalonacademy.com",
+    url: "https://www.mayrasalonandacademy.com",
     siteName: "Mayra Unisex Salon & Makeup Academy",
     images: [
       {
@@ -54,7 +54,18 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  other: {
+    "geo.region": "IN-MH",
+    "geo.placename": "Amravati",
+    "geo.position": "20.9374;77.7796",
+    ICBM: "20.9374, 77.7796",
   },
 };
 
@@ -74,11 +85,15 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "BeautySalon",
               name: "Mayra Unisex Salon & Makeup Academy",
-              url: "https://mayrasalonacademy.com",
+              url: "https://www.mayrasalonandacademy.com",
+              telephone: "+919923603601",
               address: {
                 "@type": "PostalAddress",
+                streetAddress:
+                  "Mayra unisex salon, Near Domino's front of Dussehra maidan Dominos, near, Badnera Rd, Amravati, Maharashtra 444605",
                 addressLocality: "Amravati",
                 addressRegion: "MH",
+                postalCode: "444605",
                 addressCountry: "IN",
               },
               areaServed: "Amravati",
