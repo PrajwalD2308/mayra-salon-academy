@@ -4,15 +4,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  Star,
-  Users,
-  Award,
-  Home as HomeIcon,
-  Sparkles,
-  Palette,
-  Droplet,
-} from "lucide-react";
+import { Sparkles, Droplet, Palette, Home } from "lucide-react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -52,10 +44,30 @@ export default function HeroSection() {
   ];
 
   const highlights = [
-    { icon: Sparkles, title: "Hair Services", desc: "Relaxation" },
-    { icon: Droplet, title: "Skin Treatment", desc: "Expert Care" },
-    { icon: Palette, title: "Bridal Makeup", desc: "Perfect Look" },
-    { icon: HomeIcon, title: "Home Services", desc: "At Your Doorstep" },
+    {
+      title: "Hair Services",
+      desc: "Relaxation",
+      icon: Sparkles,
+      category: "hair-care",
+    },
+    {
+      title: "Skin Treatment",
+      desc: "Expert Care",
+      icon: Droplet,
+      category: "skin-treatment",
+    },
+    {
+      title: "Bridal Makeup",
+      desc: "Perfect Look",
+      icon: Palette,
+      category: "wedding",
+    },
+    {
+      title: "Home Services",
+      desc: "At Your Doorstep",
+      icon: Home,
+      category: "makeup",
+    },
   ];
 
   return (
@@ -157,7 +169,7 @@ export default function HeroSection() {
       {/* ================= SIGNATURE SERVICES ================= */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          {/* Section Heading */}
+          {/* Heading */}
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
               Our Signature Services
@@ -171,22 +183,39 @@ export default function HeroSection() {
           <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
             {highlights.map((h, i) => {
               const Icon = h.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="rounded-3xl bg-gradient-to-br from-[#f5e6dc] to-white p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-16 h-16 mx-auto mb-5 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-md">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
 
-                  <h3 className="text-lg font-bold mb-1">{h.title}</h3>
-                  <p className="text-sm text-gray-600">{h.desc}</p>
-                </motion.div>
+              return (
+                <Link
+                  key={i}
+                  href={`/menu?category=${h.category}`}
+                  className="block"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="
+                cursor-pointer
+                rounded-3xl
+                bg-gradient-to-br from-[#f5e6dc] to-white
+                p-8
+                text-center
+                shadow-sm
+                hover:shadow-xl
+                transition-all
+                duration-300
+                hover:-translate-y-2
+              "
+                  >
+                    <div className="w-16 h-16 mx-auto mb-5 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-md">
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+
+                    <h3 className="text-lg font-bold mb-1">{h.title}</h3>
+                    <p className="text-sm text-gray-600">{h.desc}</p>
+                  </motion.div>
+                </Link>
               );
             })}
           </div>

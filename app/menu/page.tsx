@@ -2,19 +2,86 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+
 import { serviceCategories } from "@/data/services";
+
+/* =========================
+   CLIENT FILTER GROUPS
+========================= */
+const FILTER_GROUPS = [
+  {
+    key: "skin-treatment",
+    label: "Skin Treatment & Beauty",
+    categories: [
+      "Facial",
+      "Skin Services",
+      "Skin Polishing",
+      "Manicure & Pedicure",
+      "D-Tan",
+    ],
+  },
+  {
+    key: "wedding",
+    label: "Wedding Packages",
+    categories: ["Wedding Packages"],
+  },
+  {
+    key: "hair-care",
+    label: "Hair Care",
+    categories: ["Hair Care", "Beard & Mustache"],
+  },
+  {
+    key: "hair-spa",
+    label: "Hair Spa",
+    categories: ["Hair Spa and Oil Head Massage"],
+  },
+  {
+    key: "hair-treatment",
+    label: "Hair Treatment",
+    categories: ["Texture Services", "Hair and Scalp Treatment"],
+  },
+  {
+    key: "hair-color",
+    label: "Hair Color",
+    categories: ["Color Services"],
+  },
+  {
+    key: "makeup",
+    label: "Makeup Services",
+    categories: ["Makeup Service (In Salon)", "Threading"],
+  },
+  {
+    key: "wax",
+    label: "Wax Services",
+    categories: ["Normal Wax", "Rica & Biosoft Wax"],
+  },
+];
 
 export default function MenuPage() {
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("wedding");
   const firstMatchRef = useRef<HTMLDivElement | null>(null);
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
+  useEffect(() => {
+    if (categoryFromUrl && categoryFromUrl !== activeCategory) {
+      setActiveCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl, activeCategory]);
 
-  /* ===== FILTER LOGIC ===== */
+  /* =========================
+     FILTER LOGIC
+  ========================= */
   const filteredCategories = serviceCategories
-    .filter(
-      (category) =>
-        activeCategory === "all" || category.name === activeCategory,
-    )
+    .filter((category) => {
+      if (!activeCategory) return true;
+
+      const group = FILTER_GROUPS.find((g) => g.key === activeCategory);
+
+      return group?.categories.includes(category.name);
+    })
+
     .map((category) => {
       const services = category.services.filter((service) =>
         `${service.name} ${service.description || ""}`
@@ -26,7 +93,9 @@ export default function MenuPage() {
     })
     .filter((category) => category.services.length > 0);
 
-  /* ===== AUTO SCROLL TO FIRST RESULT ===== */
+  /* =========================
+     AUTO SCROLL ON SEARCH
+  ========================= */
   useEffect(() => {
     if (search && firstMatchRef.current) {
       firstMatchRef.current.scrollIntoView({
@@ -84,12 +153,12 @@ export default function MenuPage() {
             "
           />
 
-          {/* CATEGORY FILTER */}
+          {/* FILTER BUTTONS */}
           <div className="flex gap-2 overflow-x-auto no-scrollbar">
-            {["all", ...serviceCategories.map((c) => c.name)].map((cat) => (
+            {FILTER_GROUPS.map((filter) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
+                key={filter.key}
+                onClick={() => setActiveCategory(filter.key)}
                 className={`
                   px-4 py-1.5
                   rounded-full
@@ -98,13 +167,13 @@ export default function MenuPage() {
                   whitespace-nowrap
                   transition
                   ${
-                    activeCategory === cat
+                    activeCategory === filter.key
                       ? "bg-white text-[#4a1630]"
                       : "bg-white/20 text-white"
                   }
                 `}
               >
-                {cat === "all" ? "All" : cat}
+                {filter.label}
               </button>
             ))}
           </div>
@@ -112,7 +181,7 @@ export default function MenuPage() {
 
         {/* ===== MENU CONTENT ===== */}
         <div className="menu-print space-y-10">
-          {filteredCategories.length === 0 && (
+          {filteredCategories.length === 0 && search && (
             <p className="text-center text-sm opacity-80">
               No services found for “{search}”
             </p>
@@ -120,19 +189,6 @@ export default function MenuPage() {
 
           {filteredCategories.map((category) => (
             <div key={category.id}>
-              {/* CATEGORY IMAGE
-              {Array.isArray(category.images) && category.images[0] && (
-                <div className="mb-4 overflow-hidden rounded-2xl border border-white/20">
-                  <Image
-                    src={category.images[0]}
-                    alt={category.name}
-                    width={400}
-                    height={160}
-                    className="w-full h-[120px] object-cover"
-                  />
-                </div>
-              )} */}
-
               {/* CATEGORY TITLE */}
               <h2 className="text-sm font-semibold uppercase tracking-widest mb-4 border-b border-white/30 pb-2 print:border-black text-center">
                 {category.name}
@@ -169,14 +225,14 @@ export default function MenuPage() {
                     <div className="shrink-0">
                       <span
                         className="
-                        px-3 py-1
-                        rounded-full
-                        text-[11px]
-                        font-semibold
-                        bg-white/90
-                        text-[#4a1630]
-                        whitespace-nowrap
-                      "
+                          px-3 py-1
+                          rounded-full
+                          text-[11px]
+                          font-semibold
+                          bg-white/90
+                          text-[#4a1630]
+                          whitespace-nowrap
+                        "
                       >
                         {service.price
                           ? service.price.replace(" onwards", "+")
